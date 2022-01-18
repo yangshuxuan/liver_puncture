@@ -32,7 +32,7 @@ services:
     ports:
       - 3306:3306
     environment:
-      MYSQL_DATABASE: "operatepathology"
+      MYSQL_DATABASE: "liver_puncture"
       MYSQL_ROOT_PASSWORD: pcl123456
     volumes:
       - db-data:/var/lib/mysql
