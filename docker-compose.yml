@@ -6,9 +6,9 @@ services:
       - db
     build: ./liver_puncture_backend
     volumes:
-      - static:/app/static
-      - media:/app/media
-      - mysqlbackup:/app/backup_mysql
+      - /home/dell/docker-volumns/liver_puncture/static:/app/static
+      - /home/dell/docker-volumns/liver_puncture/media:/app/media
+      - /home/dell/docker-volumns/liver_puncture/mysqlbackup:/app/backup_mysql
     restart: always
     # privileged: true
 
@@ -18,7 +18,7 @@ services:
       - backend
     build: ./nginx
     volumes:
-      - static:/static
+      - /home/dell/docker-volumns/liver_puncture/static:/static
     restart: always
     ports:
       - 8073:80
@@ -30,12 +30,12 @@ services:
     # command: --default-authentication-plugin=mysql_native_password
     restart: always
     ports:
-      - 3306:3306
+      - 3307:3306
     environment:
       MYSQL_DATABASE: "liver_puncture"
       MYSQL_ROOT_PASSWORD: pcl123456
     volumes:
-      - db-data:/var/lib/mysql
+      - /home/dell/docker-volumns/liver_puncture/db-data:/var/lib/mysql
     # command:
     #   [
     #     "mysqld",
@@ -47,10 +47,5 @@ services:
     image: adminer
     restart: always
     ports:
-      - 8080:8080
+      - 8086:8080
 
-volumes:
-  db-data:
-  static:
-  media:
-  mysqlbackup:
